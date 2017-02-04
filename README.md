@@ -7,6 +7,7 @@ Yleisiä linkkejä:
 * [Tietokantayhteystesti](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/tietokantayhteys)
 * [Listaussivu (työn alla)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/listaussivu)
 * [Muokkaus- ja esittelysivu (työn alla)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/muokkausesittely)
+* [Opiskelijoiden listaussivu. (luontitoiminto valittaa $this:istä)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
 
 ## Työn aihe
 
