@@ -1,12 +1,12 @@
 CREATE TABLE Opiskelija(
-  id integer PRIMARY KEY, 
+  id integer PRIMARY KEY NOT NULL, 
   nimi varchar(50) NOT NULL,
   syntymaaika date NOT NULL,
   salasana varchar(50) NOT NULL
 );
 
 CREATE TABLE Opettaja(
-  id integer PRIMARY KEY, 
+  id integer PRIMARY KEY NOT NULL, 
   nimi varchar(50) NOT NULL,
   syntymaaika DATE,
   kuvaus varchar(10000),
@@ -14,7 +14,7 @@ CREATE TABLE Opettaja(
 );
 
 CREATE TABLE Kurssi(
-  id integer PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   opettajaid integer,
   aihe varchar(50) NOT NULL,
   kurssimaksu integer NOT NULL,

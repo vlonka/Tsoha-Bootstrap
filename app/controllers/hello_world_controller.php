@@ -8,7 +8,10 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        // Testaa koodiasi täällä
+        $opiskelijat = opiskelija::all();
+        $hyypio = opiskelija::find(1243);
+        Kint::dump($opiskelijat);
+        Kint::dump($hyypio);
         View::make('helloworld.html');
     }
 
@@ -19,5 +22,7 @@ class HelloWorldController extends BaseController {
     public static function muokkaus_ja_esittely() {
         View::make('muokkausesittely.html');
     }
+    
+    
 
 }

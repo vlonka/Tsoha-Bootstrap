@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Käyttäjätunnuksen luonti</h1>
+
+  <form method="post" action="{{base_path}}/opiskelijat">
+    <div class="form-group">
+      <label>Nimi</label>
+      <input name="nimi" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Oppilasnumero</label>
+      <input name="id" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Syntymäaika</label>
+      <input name="syntymaaika" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana</label>
+      <input name="salasana" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Luo käyttäjä</button>
+    </div>
+  </form>
+{% endblock %}

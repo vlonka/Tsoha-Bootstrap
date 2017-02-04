@@ -15,3 +15,19 @@ $routes->get('/listaussivu', function() {
 $routes->get('/muokkausesittely', function() {
     HelloWorldController::muokkausesittely();
 });
+
+$routes->get('/opiskelijat', function(){
+  Opiskelijat_Controller::index();
+});
+
+$routes->post('/opiskelijat', function(){
+  Opiskelijat_Controller::store();
+});
+
+$routes->get('/opiskelijat/uusioppilas', function(){
+  Opiskelijat_Controller::save();
+});
+
+$routes->get('/opiskelijat/:id', function($id){
+  Opiskelijat_Controller::hyypio($id);
+});

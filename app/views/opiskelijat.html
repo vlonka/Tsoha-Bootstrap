@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Rekisteröityneet opiskelijat</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>nimi</th>
+            <th>id</th>
+            <th>syntymaaika</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for opiskelija in opiskelijat %}
+        <tr>
+            <td><a href="{{base_path}}/opiskelijat/{{opiskelija.id}}">{{opiskelija.nimi}}</td>
+            <td>{{opiskelija.id}}</td>
+            <td>{{opiskelija.syntymaaika}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

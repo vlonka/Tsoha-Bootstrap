@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Opiskelija</h1>
+
+    {% for opiskelija in opiskelijat %}
+    <p>{{opiskelija.nimi}}</p>
+    <p>{{opiskelija.id}}</p>
+    <p>{{opiskelija.syntymaaika}}</p>
+    {% endfor %}
+    
+<ul>
+
+    <li><strong>Nimi:</strong> {{opiskelija.nimi}}</li>
+    <li><strong>Opiskelijanumero:</strong> {{opiskelija.id}}</li>
+    <li><strong>Syntymäaika:</strong> {{opiskelija.syntymaaika}}</li>
+
+</ul>
+
+<p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+</p>
+
+<p>// hakusessa miten saa yksittäisen opiskelijan tiedot tänne, koetin find-metodin pohjalta mennä.</p>
+
+{% endblock %}
