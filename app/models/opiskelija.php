@@ -59,4 +59,9 @@ class opiskelija extends BaseModel {
         $query->execute(array('id' => $id));
     }
 
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Opiskelija (opiskelijanro, nimi, syntymaaika, salasana) VALUES (:opiskelijanro, :nimi, :syntymaaika, :salasana)');
+        $query->execute(array('opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
+    }
+
 }
