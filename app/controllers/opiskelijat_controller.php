@@ -31,8 +31,8 @@ class Opiskelijat_Controller extends BaseController {
     }
 
     public static function edit($id) {
-        $game = Game::find($id);
-        View::make('game/edit.html', array('attributes' => $game));
+        $opiskelija = opiskelija::find($id);
+        View::make('muokkaaopiskelija.html', array('attributes' => $opiskelija));
     }
 
     public static function update($id) {
@@ -46,8 +46,8 @@ class Opiskelijat_Controller extends BaseController {
             'salasana' => $params['salasana']
         );
 
-        $game = new Game($attributes);
-        $game->update();
+        $opiskelija = new opiskelija($attributes);
+        $opiskelija->update();
 
         Redirect::to('/opiskelijat' . $game->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
     }

@@ -54,4 +54,9 @@ class opiskelija extends BaseModel {
         $this->id = $row['id'];
     }
 
+    public static function destroy($id) {
+        $query = DB::connection()->prepare('DELETE * FROM opiskelija WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id));
+    }
+
 }

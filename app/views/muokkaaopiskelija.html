@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Opiskelijan tietojen muokkaus</h1>
+
+  <form method="post" action="{{base_path}}/uusioppilas">
+    <div class="form-group">
+      <label>Nimi</label>
+      <input class="form-control" name="nimi" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Oppilasnumero</label>
+      <input name="opiskelijanro" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Syntymäaika YYYY-MM-DD</label>
+      <input name="syntymaaika" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana</label>
+      <input name='salasana' class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+    </div>
+  </form>
+{% endblock %}
