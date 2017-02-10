@@ -9,6 +9,8 @@ Yleisiä linkkejä:
 * [Muokkaus- ja esittelysivu (työn alla)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/muokkausesittely)
 * [Opiskelijoiden listaussivu. (luontitoiminto valittaa $this:istä)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
 
+Muokkaussivut opiskelijoille ovat olemassa, mutta HTML-linkki ei toimi.
+
 ## Työn aihe
 
 [Linkki valmiiseen aiheeseen.](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Kurssitarjonta_ja_kurssipaikan_varaus.html) 
