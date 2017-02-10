@@ -42,3 +42,10 @@ $routes->post('/opiskelijat/:id/muokkaa', function($id){
 $routes->post('/opiskelijat/:id/poista', function($id){
   Opiskelijat_Controller::destroy($id);
 });
+
+$routes->get('/login', function(){
+  UserController::login();
+});
+$routes->post('/login', function(){
+  UserController::handle_login();
+});

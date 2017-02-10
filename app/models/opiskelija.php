@@ -64,4 +64,21 @@ class opiskelija extends BaseModel {
         $query->execute(array('opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
     }
 
+    public function authenticate($nimi, $salasana) {
+        $query = DB::connection()->prepare('SELECT * FROM Opiskelija WHERE nimi = :nimi AND salasana = :salasana LIMIT 1');
+        $query->execute(array('nimi' => $nimi, 'salasana' => $salasana));
+        $row = $query->fetch();
+        if ($row) {
+            $hyypio = new opiskelija(array(
+                'opiskelijanro' => $row['opiskelijanro'],
+                'nimi' => $row['nimi'],
+                'syntymaaika' => $row['syntymaaika'],
+                'salasana' => $row['salasana']
+            ));
+            return $hyypio;
+        } else {
+            return null;
+        }
+    }
+
 }
