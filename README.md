@@ -11,6 +11,8 @@ Yleisiä linkkejä:
 
 Muokkaussivut opiskelijoille ovat olemassa, mutta HTML-linkki ei toimi.
 
+Loginissa myös häiriötä...
+
 ## Työn aihe
 
 [Linkki valmiiseen aiheeseen.](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Kurssitarjonta_ja_kurssipaikan_varaus.html) 
