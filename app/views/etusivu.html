@@ -5,10 +5,18 @@
 <a href="{{base_path}}/opiskelijat" class="btn btn-primary">Opiskelijat</a>
 
 <h3>Kirjaudu sisään</h3>
-<input placeholder="Käyttäjätunnus" type="text">
-<input placeholder="Salasana" type="text">
-<p></p>
-<button class="btn btn-primary">Kirjaudu</button>
-<button class="btn btn-primary">Luo käyttäjä</button>
+<form method="post" action="{{base_path}}/login">
+    <div class="form-group">
+        <label>Käyttäjätunnus</label>
+        <input class="form-control" name="username" value="{{username}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Salasana</label>
+        <input class="form-control" name="password" type="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
+</form>
 
 {% endblock %}
