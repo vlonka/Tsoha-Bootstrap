@@ -20,14 +20,25 @@ $routes->get('/opiskelijat', function(){
   Opiskelijat_Controller::index();
 });
 
-$routes->post('/opiskelijat', function(){
-  Opiskelijat_Controller::store();
+$routes->get('/uusioppilas', function(){
+  Opiskelijat_Controller::create();
 });
 
-$routes->get('/opiskelijat/uusioppilas', function(){
-  Opiskelijat_Controller::save();
+$routes->post('/uusioppilas', function(){
+  Opiskelijat_Controller::store();
 });
 
 $routes->get('/opiskelijat/:id', function($id){
   Opiskelijat_Controller::hyypio($id);
+});
+
+$routes->get('/opiskelijat/:id/muokkaa', function($id){
+  Opiskelijat_Controller::edit($id);
+});
+$routes->post('/opiskelijat/:id/muokkaa', function($id){
+  Opiskelijat_Controller::update($id);
+});
+
+$routes->post('/opiskelijat/:id/poista', function($id){
+  Opiskelijat_Controller::destroy($id);
 });

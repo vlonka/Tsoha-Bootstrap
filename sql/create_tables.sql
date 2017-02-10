@@ -1,12 +1,14 @@
 CREATE TABLE Opiskelija(
-  id integer PRIMARY KEY NOT NULL, 
+  id SERIAL PRIMARY KEY,
+  opiskelijanro integer NOT NULL,
   nimi varchar(50) NOT NULL,
   syntymaaika date NOT NULL,
   salasana varchar(50) NOT NULL
 );
 
 CREATE TABLE Opettaja(
-  id integer PRIMARY KEY NOT NULL, 
+  id SERIAL PRIMARY KEY,
+  openro integer NOT NULL, 
   nimi varchar(50) NOT NULL,
   syntymaaika DATE,
   kuvaus varchar(10000),
@@ -15,20 +17,17 @@ CREATE TABLE Opettaja(
 
 CREATE TABLE Kurssi(
   id SERIAL PRIMARY KEY,
-  opettajaid integer,
+  opeid integer REFERENCES Opettaja(id),
   aihe varchar(50) NOT NULL,
   kurssimaksu integer NOT NULL,
   kuvaus varchar(10000) NOT NULL,
   aloituspvm DATE NOT NULL,
-  aloitusaika TIME NOT NULL,
-  FOREIGN KEY(opettajaid) REFERENCES Opettaja(id)
+  aloitusaika TIME NOT NULL
 );
 
 CREATE TABLE Ilmoittautuminen(
   id SERIAL PRIMARY KEY,
-  opiskelijaid integer,
-  kurssiid integer,
-  kurssimaksu boolean DEFAULT FALSE,
-  FOREIGN KEY(opiskelijaid) REFERENCES Opiskelija(id),
-  FOREIGN KEY(kurssiid) REFERENCES Kurssi(id)
+  opiskelijaid integer REFERENCES Opiskelija(id),
+  kurssi_id integer REFERENCES Kurssi(id),
+  kurssimaksu boolean DEFAULT FALSE
 );
