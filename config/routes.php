@@ -54,3 +54,31 @@ $routes->post('/login', function() {
 $routes->post('/logout', function() {
     UserController::logout();
 });
+
+$routes->get('/kurssit', function() {
+    Kurssi_Controller::index();
+});
+
+$routes->get('/uusikurssi', function() {
+    Kurssi_Controller::create();
+});
+
+$routes->post('/uusikurssi', function() {
+    Kurssi_Controller::store();
+});
+
+$routes->get('/kurssit/:id', function($id) {
+    Kurssi_Controller::opetus($id);
+});
+
+$routes->get('/kurssit/:id/muokkaa', function($id) {
+    Kurssi_Controller::edit($id);
+});
+
+$routes->post('/kurssit/:id', function($id) {
+    Kurssi_Controller::update($id);
+});
+
+$routes->post('/kurssit/:id/poista', function($id) {
+    Kurssi_Controller::destroy($id);
+});
