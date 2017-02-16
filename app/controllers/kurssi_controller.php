@@ -42,13 +42,13 @@ class Kurssi_Controller extends BaseController {
         $params = $_POST;
 
         $attributes = array(
-            'id' => $row['id'],
-            'opeid' => $row['opeid'],
-            'aihe' => $row['aihe'],
-            'kurssimaksu' => $row['kurssimaksu'],
-            'kuvaus' => $row['kuvaus'],
-            'aloituspvm' => $row['aloituspvm'],
-            'aloitusaika' => $row['aloitusaika']
+            'id' => $params['id'],
+            'opeid' => $params['opeid'],
+            'aihe' => $params['aihe'],
+            'kurssimaksu' => $params['kurssimaksu'],
+            'kuvaus' => $params['kuvaus'],
+            'aloituspvm' => $params['aloituspvm'],
+            'aloitusaika' => $params['aloitusaika']
         );
 
         $kurssi = new kurssi($attributes);
