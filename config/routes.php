@@ -45,14 +45,14 @@ $routes->post('/opiskelijat/:id/poista', function($id) {
 });
 
 $routes->get('/login', function() {
-    UserController::login();
+    Opiskelijat_Controller::login();
 });
 $routes->post('/login', function() {
-    UserController::handle_login();
+    Opiskelijat_Controller::handle_login();
 });
 
 $routes->post('/logout', function() {
-    UserController::logout();
+    Opiskelijat_Controller::logout();
 });
 
 $routes->get('/kurssit', function() {

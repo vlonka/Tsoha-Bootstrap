@@ -61,6 +61,24 @@ class Opiskelijat_Controller extends BaseController {
         Redirect::to('/opiskelijat', array('message' => 'opiskelijan tiedot on poistettu onnistuneesti!'));
     }
 
+    public static function login() {
+        View::make('/login.html');
+    }
+
+    public static function handle_login() {
+        $params = $_POST;
+
+        $opiskelija = opiskelija::authenticate($params['username'], $params['password']);
+
+        if (!$opiskelija) {
+            View::make('/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+        } else {
+            $_SESSION['opiskelija'] = $opiskelija->id;
+
+            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $opiskelija->nimi . '!'));
+        }
+    }
+
     public static function logout() {
         $_SESSION['opiskelija'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));

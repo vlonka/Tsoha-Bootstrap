@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Kurssinluonti</h1>
+
+<form method="post" action="{{base_path}}/uusikurssi">
+    <div class="form-group">
+        <label>Aihe</label>
+        <input class="form-control" name="aihe" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Kurssin opettajan tunnusnumero</label>
+        <input name="openro" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Aloituspäivämäärä</label>
+        <input placeholder="YYYY-MM-DD" name="aloituspvm" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Aloitusaika</label>
+        <input placeholder="hh:mm:ss" name="aloitusaika" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Kurssimaksu</label>
+        <input name='kurssimaksu' class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Kuvaus</label>
+        <input name='kuvaus' class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Luo kurssi</button>
+    </div>
+</form>
+{% endblock %}
