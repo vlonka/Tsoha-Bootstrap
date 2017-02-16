@@ -5,13 +5,11 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://vlonka.users.cs.helsinki.fi/kurssitarjonta)
 * [Linkki dokumentaatiooni](https://github.com/vlonka/Tsoha-Bootstrap/blob/master/doc/Dokumantaatio.pdf)
 * [Tietokantayhteystesti](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/tietokantayhteys)
-* [Listaussivu (työn alla)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/listaussivu)
-* [Muokkaus- ja esittelysivu (työn alla)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/muokkausesittely)
-* [Opiskelijoiden listaussivu. (luontitoiminto valittaa $this:istä)](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
+* [Opiskelijoiden listaussivu.](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
 
-Muokkaussivut opiskelijoille ovat olemassa, mutta HTML-linkki ei toimi.
+Matti Meikäläinen ja qwerty olisi käyttäjätunnus ja salasana jos login toimisi.
 
-Loginissa myös häiriötä...
+Kurssin luonnissa ja muokkauksessa häiriö, listaus ja poisto toimii.
 
 ## Työn aihe
 
