@@ -2,7 +2,7 @@
 
 class opiskelija extends BaseModel {
 
-    public $id, $nimi, $syntymaaika, $salasana;
+    public $id, $opiskelijanro, $nimi, $syntymaaika, $salasana;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -49,7 +49,7 @@ class opiskelija extends BaseModel {
 
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Opiskelija (opiskelijanro, nimi, syntymaaika, salasana) VALUES (:opiskelijanro, :nimi, :syntymaaika, :salasana) RETURNING id');
-        $query->execute(array('id' => $this->id, 'opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
+        $query->execute(array('opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
