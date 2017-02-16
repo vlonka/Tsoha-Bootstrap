@@ -35,6 +35,7 @@ $routes->get('/opiskelijat/:id', function($id){
 $routes->get('/opiskelijat/:id/muokkaa', function($id){
   Opiskelijat_Controller::edit($id);
 });
+
 $routes->post('/opiskelijat/:id', function($id){
   Opiskelijat_Controller::update($id);
 });

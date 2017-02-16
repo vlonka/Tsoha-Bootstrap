@@ -32,7 +32,7 @@ class Opiskelijat_Controller extends BaseController {
 
     public static function edit($id) {
         $opiskelija = opiskelija::find($id);
-        View::make('muokkaaopiskelija.html', array('attributes' => $opiskelija));
+        View::make('muokkaaopiskelija.html', array('opiskelija' => $opiskelija));
     }
 
     public static function update($id) {
@@ -49,7 +49,7 @@ class Opiskelijat_Controller extends BaseController {
         $opiskelija = new opiskelija($attributes);
         $opiskelija->update($id);
 
-        Redirect::to('/opiskelijat' . $opiskelija->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
+        Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
     }
 
     public static function destroy($id) {

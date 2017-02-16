@@ -56,12 +56,12 @@ class opiskelija extends BaseModel {
     }
 
     public static function destroy($id) {
-        $query = DB::connection()->prepare('DELETE * FROM opiskelija WHERE id = :id LIMIT 1');
+        $query = DB::connection()->prepare('DELETE FROM opiskelija WHERE id = :id');
         $query->execute(array('id' => $id));
     }
 
     public function update($id) {
-        $query = DB::connection()->prepare('UPDATE Opiskelija (id, opiskelijanro, nimi, syntymaaika, salasana) VALUES (:id, :opiskelijanro, :nimi, :syntymaaika, :salasana)');
+        $query = DB::connection()->prepare('UPDATE Opiskelija SET (opiskelijanro, nimi, syntymaaika, salasana) = (:opiskelijanro, :nimi, :syntymaaika, :salasana) WHERE id = :id');
         $query->execute(array('id' => $this->id, 'opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
     }
 

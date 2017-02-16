@@ -5,22 +5,22 @@
   <form method="post" action="{{base_path}}/opiskelijat/{{opiskelija.id}}">
     <div class="form-group">
       <label>Nimi</label>
-      <input class="form-control" name="nimi" type="text">
+      <input class="form-control" name="nimi" value="{{opiskelija.nimi}}" type="text">
     </div>
 
     <div class="form-group">
       <label>Oppilasnumero</label>
-      <input name="opiskelijanro" class="form-control" type="text">
+      <input name="opiskelijanro" class="form-control" value="{{opiskelija.opiskelijanro}}" type="text">
     </div>
 
     <div class="form-group">
       <label>Syntymäaika</label>
-      <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" type="text">
+      <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" value="{{opiskelija.syntymaaika}}" type="text">
     </div>
 
     <div class="form-group">
       <label>Salasana</label>
-      <input name='salasana' class="form-control" type="text">
+      <input name='salasana' class="form-control" value="{{opiskelija.salasana}}" type="text">
     </div>
 
     <div class="form-group">
