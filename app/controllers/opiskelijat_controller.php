@@ -8,6 +8,7 @@ class Opiskelijat_Controller extends BaseController {
     }
 
     public static function hyypio($id) {
+        self::check_logged_in();
         $opiskelija = opiskelija::find($id);
         View::make('opiskelija.html', array('opiskelija' => $opiskelija));
     }
@@ -31,6 +32,7 @@ class Opiskelijat_Controller extends BaseController {
     }
 
     public static function edit($id) {
+        self::check_logged_in();
         $opiskelija = opiskelija::find($id);
         View::make('muokkaaopiskelija.html', array('opiskelija' => $opiskelija));
     }
@@ -53,9 +55,15 @@ class Opiskelijat_Controller extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_logged_in();
         $opiskelija = new opiskelija(array('id' => $id));
         $opiskelija->destroy($id);
         Redirect::to('/opiskelijat', array('message' => 'opiskelijan tiedot on poistettu onnistuneesti!'));
+    }
+
+    public static function logout() {
+        $_SESSION['opiskelija'] = null;
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
 
 }

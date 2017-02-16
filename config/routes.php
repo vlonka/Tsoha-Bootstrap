@@ -16,37 +16,41 @@ $routes->get('/muokkausesittely', function() {
     HelloWorldController::muokkausesittely();
 });
 
-$routes->get('/opiskelijat', function(){
-  Opiskelijat_Controller::index();
+$routes->get('/opiskelijat', function() {
+    Opiskelijat_Controller::index();
 });
 
-$routes->get('/uusioppilas', function(){
-  Opiskelijat_Controller::create();
+$routes->get('/uusioppilas', function() {
+    Opiskelijat_Controller::create();
 });
 
-$routes->post('/uusioppilas', function(){
-  Opiskelijat_Controller::store();
+$routes->post('/uusioppilas', function() {
+    Opiskelijat_Controller::store();
 });
 
-$routes->get('/opiskelijat/:id', function($id){
-  Opiskelijat_Controller::hyypio($id);
+$routes->get('/opiskelijat/:id', function($id) {
+    Opiskelijat_Controller::hyypio($id);
 });
 
-$routes->get('/opiskelijat/:id/muokkaa', function($id){
-  Opiskelijat_Controller::edit($id);
+$routes->get('/opiskelijat/:id/muokkaa', function($id) {
+    Opiskelijat_Controller::edit($id);
 });
 
-$routes->post('/opiskelijat/:id', function($id){
-  Opiskelijat_Controller::update($id);
+$routes->post('/opiskelijat/:id', function($id) {
+    Opiskelijat_Controller::update($id);
 });
 
-$routes->post('/opiskelijat/:id/poista', function($id){
-  Opiskelijat_Controller::destroy($id);
+$routes->post('/opiskelijat/:id/poista', function($id) {
+    Opiskelijat_Controller::destroy($id);
 });
 
-$routes->get('/login', function(){
-  UserController::login();
+$routes->get('/login', function() {
+    UserController::login();
 });
-$routes->post('/login', function(){
-  UserController::handle_login();
+$routes->post('/login', function() {
+    UserController::handle_login();
+});
+
+$routes->post('/logout', function() {
+    UserController::logout();
 });
