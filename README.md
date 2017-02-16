@@ -9,7 +9,7 @@ Yleisiä linkkejä:
 
 Matti Meikäläinen ja qwerty olisi käyttäjätunnus ja salasana jos login toimisi.
 
-Kurssin luonnissa ja muokkauksessa häiriö, listaus ja poisto toimii.
+Kurssin luonnissa ja muokkauksessa häiriö, listaus ja poisto toimii. Saattaa olla samanlainen ongelma kuin aiemmin...
 
 Validointi hakusessa, ei toteutusta tällä hetkellä.
 
