@@ -35,6 +35,7 @@ class opiskelija extends BaseModel {
 
         if ($row) {
             $hyypio = new opiskelija(array(
+                'id' => $row['id'],
                 'opiskelijanro' => $row['opiskelijanro'],
                 'nimi' => $row['nimi'],
                 'syntymaaika' => $row['syntymaaika'],
@@ -59,9 +60,9 @@ class opiskelija extends BaseModel {
         $query->execute(array('id' => $id));
     }
 
-    public function update() {
-        $query = DB::connection()->prepare('UPDATE Opiskelija (opiskelijanro, nimi, syntymaaika, salasana) VALUES (:opiskelijanro, :nimi, :syntymaaika, :salasana)');
-        $query->execute(array('opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
+    public function update($id) {
+        $query = DB::connection()->prepare('UPDATE Opiskelija (id, opiskelijanro, nimi, syntymaaika, salasana) VALUES (:id, :opiskelijanro, :nimi, :syntymaaika, :salasana)');
+        $query->execute(array('id' => $this->id, 'opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
     }
 
     public function authenticate($nimi, $salasana) {

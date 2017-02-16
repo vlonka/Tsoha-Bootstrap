@@ -47,14 +47,14 @@ class Opiskelijat_Controller extends BaseController {
         );
 
         $opiskelija = new opiskelija($attributes);
-        $opiskelija->update();
+        $opiskelija->update($id);
 
-        Redirect::to('/opiskelijat' . $game->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
+        Redirect::to('/opiskelijat' . $opiskelija->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
     }
 
     public static function destroy($id) {
         $opiskelija = new opiskelija(array('id' => $id));
-        $opiskelija->destroy();
+        $opiskelija->destroy($id);
         Redirect::to('/opiskelijat', array('message' => 'opiskelijan tiedot on poistettu onnistuneesti!'));
     }
 
