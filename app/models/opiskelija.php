@@ -71,6 +71,7 @@ class opiskelija extends BaseModel {
         $row = $query->fetch();
         if ($row) {
             $hyypio = new opiskelija(array(
+                'id' => $row['id'],
                 'opiskelijanro' => $row['opiskelijanro'],
                 'nimi' => $row['nimi'],
                 'syntymaaika' => $row['syntymaaika'],

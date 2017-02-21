@@ -68,10 +68,10 @@ class Opiskelijat_Controller extends BaseController {
     public static function handle_login() {
         $params = $_POST;
 
-        $opiskelija = opiskelija::authenticate($params['username'], $params['password']);
+        $opiskelija = opiskelija::authenticate($params['nimi'], $params['salasana']);
 
         if (!$opiskelija) {
-            View::make('/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+            View::make('/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'nimi' => $params['nimi']));
         } else {
             $_SESSION['opiskelija'] = $opiskelija->id;
 

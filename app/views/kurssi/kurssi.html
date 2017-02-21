@@ -7,14 +7,12 @@
 
     <li><strong>Kurssinumero:</strong> {{kurssi.id}}</li>
     <li><strong>Kurssimaksu:</strong> {{kurssi.kurssimaksu}}</li>
-    <li> href="{{base_path}}/opettajat/{{kurssi.opeid}}"<strong>Opettaja:</strong> {{kurssi.opeid}}</li>
+    <li><strong>Opettaja:</strong> <a href="{{base_path}}/opettajat/{{kurssi.opeid}}">{{kurssi.opeid}}</a></li>
     <li><strong>Kuvaus:</strong> {{kurssi.kuvaus}}</li>
     <li><strong>Aloitusaika:</strong> {{kurssi.aloituspvm}}, {{kurssi.aloitusaika}}</li>
 
 
 </ul>
-
-<h6>//Hakusessa miten tonne saa linkin...</h6>
 
 <form method="post" action="{{base_path}}/kurssit/{{kurssi.id}}/poista" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa kurssin?">
     <button type="submit" class="btn btn-danger">Poista</button></form>
