@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Opettajat</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>nimi</th>
+            <th>opettajanumero</th>
+            <th>syntymaaika</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for opettaja in opettajat %}
+        <tr>
+            <td><a href="{{base_path}}/opettajat/{{opettaja.id}}">{{opettaja.nimi}}</td>
+            <td>{{opettaja.openro}}</td>
+            <td>{{opettaja.syntymaaika}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{base_path}}/uusiopettaja" class="btn btn-default">Luo opettaja</a>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Opettaja</h1>
+
+<ul>
+
+    <li><strong>Nimi:</strong> {{opettaja.nimi}}</li>
+    <li><strong>Opettaja-ID:</strong> {{opettaja.id}}</li>
+    <li><strong>Opettajanumero:</strong> {{opettaja.openro}}</li>
+    <li><strong>Syntymäaika:</strong> {{opettaja.syntymaaika}}</li>
+    <li><strong>Kuvaus:</strong> {{opettaja.kuvaus}}</li>
+
+</ul>
+
+<form method="post" action="{{base_path}}/opettajat/{{opettaja.id}}/poista" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa opettajan?">
+    <button type="submit" class="btn btn-danger">Poista</button></form>
+<a href="{{base_path}}/opettajat/{{opiskelija.id}}/muokkaa" class="btn btn-default">Muokkaa</a>
+
+
+{% endblock %}

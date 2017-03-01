@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Opettajan tietojen muokkaus</h1>
+
+<form method="post" action="{{base_path}}/opettajat/{{opettaja.id}}">
+    <div class="form-group">
+        <label>Nimi</label>
+        <input class="form-control" name="nimi" value="{{opettaja.nimi}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Opettajanumero</label>
+        <input name="openro" class="form-control" value="{{opettaja.openro}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Syntymäaika</label>
+        <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" value="{{opettaja.syntymaaika}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Salasana</label>
+        <input name='salasana' class="form-control" value="{{opettaja.salasana}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Kuvaus</label>
+        <input placeholder='10000 merkkiä' name='kuvaus' class="form-control" value="{{opettaja.kuvaus}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+    </div>
+</form>
+{% endblock %}
