@@ -82,3 +82,42 @@ $routes->post('/kurssit/:id', function($id) {
 $routes->post('/kurssit/:id/poista', function($id) {
     Kurssi_Controller::destroy($id);
 });
+
+$routes->get('/opettajat', function() {
+    Opettajat_Controller::index();
+});
+
+$routes->get('/uusiopettaja', function() {
+    Opettajat_Controller::create();
+});
+
+$routes->post('/uusiopettaja', function() {
+    Opettajat_Controller::store();
+});
+
+$routes->get('/opettajat/:id', function($id) {
+    Opettajat_Controller::ope($id);
+});
+
+$routes->get('/opettajat/:id/muokkaa', function($id) {
+    Opettajat_Controller::edit($id);
+});
+
+$routes->post('/opettajat/:id', function($id) {
+    Opettajat_Controller::update($id);
+});
+
+$routes->post('/opettajat/:id/poista', function($id) {
+    Opettajat_Controller::destroy($id);
+});
+
+$routes->get('/login', function() {
+    Opettajat_Controller::login();
+});
+$routes->post('/login', function() {
+    Opettajat_Controller::handle_login();
+});
+
+$routes->post('/logout', function() {
+    Opettajat_Controller::logout();
+});
