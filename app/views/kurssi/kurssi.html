@@ -14,6 +14,25 @@
 
 </ul>
 
+<h4><strong>Ilmoittautumiset:</strong></h4>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Opiskelijan nimi</th>
+            <th>kurssimaksu maksettu</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ilmoittautuminen in ilmoittautumiset %}
+        <tr>
+            <td><a href="{{base_path}}/opiskelijat/{{ilmoittautuminen.opiskelijaid}}">{{ilmoittautuminen.opiskelijaid}}</td>
+            <td>{{ilmoittautuminen.kurssimaksu}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 <form method="post" action="{{base_path}}/kurssit/{{kurssi.id}}/poista" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa kurssin?">
     <button type="submit" class="btn btn-danger">Poista</button></form>
 <a href="{{base_path}}/kurssit/{{kurssi.id}}/muokkaa" class="btn btn-default">Muokkaa</a>

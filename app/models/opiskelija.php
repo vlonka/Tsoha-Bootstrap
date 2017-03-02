@@ -33,8 +33,22 @@ class opiskelija extends BaseModel {
         $query->execute(array('id' => $id));
         $row = $query->fetch();
 
+        $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE opiskelijaid = :id');
+        $query->execute(array('opiskelijaid' => $opiskelijaid));
+        $rows = $query->fetchAll();
+        $ilmoittautumiset = array();
+
+        foreach ($rows as $row) {
+            $ilmoittautumiset[] = new ilmoittautuminen(array(
+                'id' => $row['id'],
+                'opiskelijaid' => $row['opiskelijaid'],
+                'kurssi_id' => $row['kurssi_id'],
+                'kurssimaksu' => $row['kurssimaksu'],
+            ));
+        }
+
         if ($row) {
-            $hyypio = new opiskelija(array(
+            $opiskelija = new opiskelija(array(
                 'id' => $row['id'],
                 'opiskelijanro' => $row['opiskelijanro'],
                 'nimi' => $row['nimi'],
@@ -42,7 +56,7 @@ class opiskelija extends BaseModel {
                 'salasana' => $row['salasana']
             ));
 
-            return $hyypio;
+            return $opiskelija && $ilmoittautumiset;
         }
 
         return null;
@@ -56,6 +70,9 @@ class opiskelija extends BaseModel {
     }
 
     public static function destroy($id) {
+        $query = DB::connection()->prepare('DELETE FROM ilmoittautuminen WHERE opiskelijaid = :id');
+        $query->execute(array('id' => $id));
+        
         $query = DB::connection()->prepare('DELETE FROM opiskelija WHERE id = :id');
         $query->execute(array('id' => $id));
     }
@@ -70,14 +87,14 @@ class opiskelija extends BaseModel {
         $query->execute(array('nimi' => $nimi, 'salasana' => $salasana));
         $row = $query->fetch();
         if ($row) {
-            $hyypio = new opiskelija(array(
+            $opiskelija = new opiskelija(array(
                 'id' => $row['id'],
                 'opiskelijanro' => $row['opiskelijanro'],
                 'nimi' => $row['nimi'],
                 'syntymaaika' => $row['syntymaaika'],
                 'salasana' => $row['salasana']
             ));
-            return $hyypio;
+            return $opiskelija;
         } else {
             return null;
         }

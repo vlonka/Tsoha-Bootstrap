@@ -34,6 +34,20 @@ class kurssi extends BaseModel {
         $query = DB::connection()->prepare('SELECT * FROM kurssi WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
+        
+        $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE kurssi_id = :id');
+        $query->execute(array('kurssi_id' => $kurssi_id));
+        $rows = $query->fetchAll();
+        $ilmoittautumiset = array();
+
+        foreach ($rows as $row) {
+            $ilmoittautumiset[] = new ilmoittautuminen(array(
+                'id' => $row['id'],
+                'opiskelijaid' => $row['opiskelijaid'],
+                'kurssi_id' => $row['kurssi_id'],
+                'kurssimaksu' => $row['kurssimaksu'],
+            ));
+        }
 
         if ($row) {
             $opetus = new kurssi(array(
@@ -46,7 +60,7 @@ class kurssi extends BaseModel {
                 'aloitusaika' => $row['aloitusaika']
             ));
 
-            return $opetus;
+            return $opetus && $ilmoittautumiset;
         }
 
         return null;
@@ -60,6 +74,8 @@ class kurssi extends BaseModel {
     }
 
     public static function destroy($id) {
+        $query = DB::connection()->prepare('DELETE * FROM Ilmoittautuminen WHERE kurssi_id = :id');
+        $query->execute(array('id' => $id));
         $query = DB::connection()->prepare('DELETE FROM kurssi WHERE id = :id');
         $query->execute(array('id' => $id));
     }

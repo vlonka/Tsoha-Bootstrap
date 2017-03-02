@@ -10,7 +10,7 @@ class Opiskelijat_Controller extends BaseController {
     public static function hyypio($id) {
         self::check_logged_in();
         $opiskelija = opiskelija::find($id);
-        View::make('opiskelija.html', array('opiskelija' => $opiskelija));
+        View::make('opiskelija.html', array('opiskelija' => $opiskelija), array('ilmoittautumiset' => $ilmoittautumiset));
     }
 
     public static function store() {

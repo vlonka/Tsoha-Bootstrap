@@ -14,3 +14,5 @@ INSERT INTO Kurssi (opeid, aihe, kurssimaksu, kuvaus, aloituspvm, aloitusaika)
 INSERT INTO Kurssi (opeid, aihe, kurssimaksu, kuvaus, aloituspvm, aloitusaika)
  VALUES ('1', 'Purkamisen jatkokurssi', '150', 'Lisää mieletöntä hävitystä.',
  '2017-04-02', '04:00:00');
+
+INSERT INTO Ilmoittautuminen (opiskelijaid, kurssi_id) VALUES (1, 1);
