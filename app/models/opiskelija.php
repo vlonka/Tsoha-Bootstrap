@@ -33,20 +33,6 @@ class opiskelija extends BaseModel {
         $query->execute(array('id' => $id));
         $row = $query->fetch();
 
-        $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE opiskelijaid = :id');
-        $query->execute(array('id' => $id));
-        $rows = $query->fetchAll();
-        $ilmoittautumiset = array();
-
-        foreach ($rows as $row2) {
-            $ilmoittautumiset[] = new Ilmoittautuminen(array(
-                'id' => $row2['id'],
-                'opiskelijaid' => $row2['opiskelijaid'],
-                'kurssi_id' => $row2['kurssi_id'],
-                'kurssimaksu' => $row2['kurssimaksu'],
-            ));
-        }
-
         if ($row) {
             $opiskelija = new opiskelija(array(
                 'id' => $row['id'],
@@ -56,12 +42,28 @@ class opiskelija extends BaseModel {
                 'salasana' => $row['salasana']
             ));
 
-            $opiskelija = array_merge($opiskelija, $ilmoittautumiset);
-            
             return $opiskelija;
         }
 
         return null;
+    }
+
+    public static function findIlmo($id) {
+        $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE opiskelijaid = :id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $ilmoittautumiset = array();
+
+        foreach ($rows as $row) {
+            $ilmoittautumiset[] = new Ilmoittautuminen(array(
+                'id' => $row['id'],
+                'opiskelijaid' => $row['opiskelijaid'],
+                'kurssi_id' => $row['kurssi_id'],
+                'kurssimaksu' => $row['kurssimaksu'],
+            ));
+
+            return $ilmoittautumiset;
+        }
     }
 
     public function save() {
@@ -74,7 +76,7 @@ class opiskelija extends BaseModel {
     public static function destroy($id) {
         $query = DB::connection()->prepare('DELETE FROM ilmoittautuminen WHERE opiskelijaid = :id');
         $query->execute(array('id' => $id));
-        
+
         $query = DB::connection()->prepare('DELETE FROM opiskelija WHERE id = :id');
         $query->execute(array('id' => $id));
     }

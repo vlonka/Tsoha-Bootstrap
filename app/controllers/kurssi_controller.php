@@ -15,7 +15,6 @@ class Kurssi_Controller extends BaseController {
     public static function store() {
         $params = $_POST;
         $kurssi = new kurssi(array(
-            'id' => $params['id'],
             'opeid' => $params['opeid'],
             'aihe' => $params['aihe'],
             'kurssimaksu' => $params['kurssimaksu'],
