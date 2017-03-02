@@ -2,7 +2,7 @@
 
 class opettaja extends BaseModel {
 
-    public $id, $openro, $nimi, $syntymaaika, $kuvaus, $salasana;
+    public $id, $openro, $nimi, $syntymaaika, $kuvaus, $salasana, $opiskelijaid;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -21,7 +21,7 @@ class opettaja extends BaseModel {
                 'openro' => $row['openro'],
                 'nimi' => $row['nimi'],
                 'syntymaaika' => $row['syntymaaika'],
-                'kuvaus' => $params['kuvaus'],
+                'kuvaus' => $row['kuvaus'],
                 'salasana' => $row['salasana']
             ));
         }
@@ -35,9 +35,9 @@ class opettaja extends BaseModel {
         $row = $query->fetch();
 
         if ($row) {
-            $opettaja = new opiskelija(array(
+            $opettaja = new opettaja(array(
                 'id' => $row['id'],
-                'opiskelijanro' => $row['opiskelijanro'],
+                'openro' => $row['openro'],
                 'nimi' => $row['nimi'],
                 'syntymaaika' => $row['syntymaaika'],
                 'salasana' => $row['salasana']
@@ -62,7 +62,7 @@ class opettaja extends BaseModel {
     }
 
     public function update($id) {
-        $query = DB::connection()->prepare('UPDATE Opettaja SET (openro, nimi, syntymaaika, kuvaus, salasana) = (:opiskelijanro, :nimi, :syntymaaika, :kuvaus, :salasana) WHERE id = :id');
+        $query = DB::connection()->prepare('UPDATE Opettaja SET (openro, nimi, syntymaaika, kuvaus, salasana) = (:openro, :nimi, :syntymaaika, :kuvaus, :salasana) WHERE id = :id');
         $query->execute(array('id' => $this->id, 'openro' => $this->openro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'kuvaus' => $this->kuvaus, 'salasana' => $this->salasana));
     }
 
@@ -73,10 +73,10 @@ class opettaja extends BaseModel {
         if ($row) {
             $opettaja = new opettaja(array(
                 'id' => $row['id'],
-                'opiskelijanro' => $row['opiskelijanro'],
+                'openro' => $row['openro'],
                 'nimi' => $row['nimi'],
                 'syntymaaika' => $row['syntymaaika'],
-                'kuvaus' => $params['kuvaus'],
+                'kuvaus' => $row['kuvaus'],
                 'salasana' => $row['salasana']
             ));
             return $opettaja;

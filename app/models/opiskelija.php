@@ -2,7 +2,7 @@
 
 class opiskelija extends BaseModel {
 
-    public $id, $opiskelijanro, $nimi, $syntymaaika, $salasana;
+    public $id, $opiskelijanro, $nimi, $syntymaaika, $salasana, $opiskelijaid, $kurssi_id;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -34,16 +34,16 @@ class opiskelija extends BaseModel {
         $row = $query->fetch();
 
         $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE opiskelijaid = :id');
-        $query->execute(array('opiskelijaid' => $opiskelijaid));
+        $query->execute(array('id' => $id));
         $rows = $query->fetchAll();
         $ilmoittautumiset = array();
 
-        foreach ($rows as $row) {
-            $ilmoittautumiset[] = new ilmoittautuminen(array(
-                'id' => $row['id'],
-                'opiskelijaid' => $row['opiskelijaid'],
-                'kurssi_id' => $row['kurssi_id'],
-                'kurssimaksu' => $row['kurssimaksu'],
+        foreach ($rows as $row2) {
+            $ilmoittautumiset[] = new Ilmoittautuminen(array(
+                'id' => $row2['id'],
+                'opiskelijaid' => $row2['opiskelijaid'],
+                'kurssi_id' => $row2['kurssi_id'],
+                'kurssimaksu' => $row2['kurssimaksu'],
             ));
         }
 
@@ -56,7 +56,9 @@ class opiskelija extends BaseModel {
                 'salasana' => $row['salasana']
             ));
 
-            return $opiskelija && $ilmoittautumiset;
+            $opiskelija = array_merge($opiskelija, $ilmoittautumiset);
+            
+            return $opiskelija;
         }
 
         return null;

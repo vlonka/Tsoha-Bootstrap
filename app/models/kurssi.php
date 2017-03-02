@@ -2,7 +2,7 @@
 
 class kurssi extends BaseModel {
 
-    public $id, $opeid, $aihe, $kurssimaksu, $kuvaus, $aloituspvm, $aloitusaika;
+    public $id, $opeid, $aihe, $kurssimaksu, $kuvaus, $aloituspvm, $aloitusaika, $kurssi_id, $opiskelijaid;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -34,18 +34,18 @@ class kurssi extends BaseModel {
         $query = DB::connection()->prepare('SELECT * FROM kurssi WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
-        
+
         $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE kurssi_id = :id');
-        $query->execute(array('kurssi_id' => $kurssi_id));
+        $query->execute(array('id' => $id));
         $rows = $query->fetchAll();
         $ilmoittautumiset = array();
 
-        foreach ($rows as $row) {
-            $ilmoittautumiset[] = new ilmoittautuminen(array(
-                'id' => $row['id'],
-                'opiskelijaid' => $row['opiskelijaid'],
-                'kurssi_id' => $row['kurssi_id'],
-                'kurssimaksu' => $row['kurssimaksu'],
+        foreach ($rows as $row2) {
+            $ilmoittautumiset[] = new Ilmoittautuminen(array(
+                'id' => $row2['id'],
+                'opiskelijaid' => $row2['opiskelijaid'],
+                'kurssi_id' => $row2['kurssi_id'],
+                'kurssimaksu' => $row2['kurssimaksu'],
             ));
         }
 
