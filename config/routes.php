@@ -125,3 +125,7 @@ $routes->post('/logout', function() {
 $routes->post('/kurssit/:id/ilmoittaudu', function($id) {
     Ilmoittautuminen_Controller::ilmo($id);
 });
+
+$routes->post('/ilmoittautuminen/:id/poista', function($id) {
+    Ilmoittautuminen_Controller::destroy($id);
+});

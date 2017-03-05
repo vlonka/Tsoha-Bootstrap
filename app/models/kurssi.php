@@ -34,7 +34,7 @@ class kurssi extends BaseModel {
         $query = DB::connection()->prepare('SELECT * FROM kurssi WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
-    
+
         if ($row) {
             $opetus = new kurssi(array(
                 'id' => $row['id'],
@@ -51,7 +51,7 @@ class kurssi extends BaseModel {
 
         return null;
     }
-    
+
     public static function findIlmo($id) {
         $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE kurssi_id = :id');
         $query->execute(array('id' => $id));

@@ -16,6 +16,7 @@
         <tr>
             <th>kurssin ID</th>
             <th>kurssimaksu maksettu</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -24,6 +25,8 @@
         <tr>
             <td><a href="{{base_path}}/kurssit/{{ilmoittautuminen.kurssi_id}}">{{ilmoittautuminen.kurssi_id}}</td>
             <td>{{ilmoittautuminen.kurssimaksu}}</td>
+            <td><form method="post" action="{{base_path}}/ilmoittautuminen/{{ilmoittautuminen.id}}/poista" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa ilmoittautumisesi?">
+                    <button type="submit" class="btn btn-danger">Poista</button></form></td>
         </tr>
         {% endfor %}
     </tbody>

@@ -22,7 +22,8 @@
             <td>{{kurssi.kuvaus}}</td>
             <td>{{kurssi.aloituspvm}}</td>
             <td>{{kurssi.aloitusaika}}</td>
-            <td><a href="{{base_path}}/ilmoittaudu" class="btn btn-default">Ilmoittaudu kurssille</a></td>
+            <td><form method="post" action="{{base_path}}/kurssit/{{kurssi.id}}/ilmoittaudu">
+                    <button type="submit" class="btn btn-default">Ilmoittaudu kurssille</button></form></td>
         </tr>
         {% endfor %}
     </tbody>

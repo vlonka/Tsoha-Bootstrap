@@ -27,40 +27,7 @@ class Ilmoittautuminen extends BaseModel {
         return $ilmoittautumiset;
     }
 
-//    public static function find($id) {
-//        $query = DB::connection()->prepare('SELECT * FROM opiskelija WHERE id = :id LIMIT 1');
-//        $query->execute(array('id' => $id));
-//        $row = $query->fetch();
-//
-//        $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE opiskelijaid = :id');
-//        $query->execute(array('opiskelijaid' => $opiskelijaid));
-//        $rows = $query->fetchAll();
-//        $ilmoittautumiset = array();
-//
-//        foreach ($rows as $row) {
-//            $ilmoittautumiset[] = new ilmoittautuminen(array(
-//                'id' => $row['id'],
-//                'opiskelijaid' => $row['opiskelijaid'],
-//                'kurssi_id' => $row['kurssi_id'],
-//                'kurssimaksu' => $row['kurssimaksu'],
-//                'salasana' => $row['salasana']
-//            ));
-//        }
-//
-//        if ($row) {
-//            $opiskelija = new opiskelija(array(
-//                'id' => $row['id'],
-//                'opiskelijanro' => $row['opiskelijanro'],
-//                'nimi' => $row['nimi'],
-//                'syntymaaika' => $row['syntymaaika'],
-//                'salasana' => $row['salasana']
-//            ));
-//
-//            return $opiskelija && $ilmoittautumiset;
-//        }
-//
-//        return null;
-//    }
+
 
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Ilmoittautuminen (opiskelijaid, kurssi_id) VALUES (:opiskelijaid, :kurssi_id) RETURNING id');
@@ -72,14 +39,8 @@ class Ilmoittautuminen extends BaseModel {
     }
 
     public static function destroy($id) {
-        $query = DB::connection()->prepare('DELETE FROM ilmoittautuminen WHERE opiskelijaid = :id');
+        $query = DB::connection()->prepare('DELETE FROM ilmoittautuminen WHERE id = :id');
         $query->execute(array('id' => $id));
    
     }
-
-    public function update($id) {
-        $query = DB::connection()->prepare('UPDATE Opiskelija SET (opiskelijanro, nimi, syntymaaika, salasana) = (:opiskelijanro, :nimi, :syntymaaika, :salasana) WHERE id = :id');
-        $query->execute(array('id' => $this->id, 'opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
-    }
-
 }

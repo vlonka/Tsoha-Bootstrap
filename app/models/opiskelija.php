@@ -54,12 +54,12 @@ class opiskelija extends BaseModel {
         $rows = $query->fetchAll();
         $ilmoittautumiset = array();
 
-        foreach ($rows as $row) {
+        foreach ($rows as $row2) {
             $ilmoittautumiset[] = new Ilmoittautuminen(array(
-                'id' => $row['id'],
-                'opiskelijaid' => $row['opiskelijaid'],
-                'kurssi_id' => $row['kurssi_id'],
-                'kurssimaksu' => $row['kurssimaksu'],
+                'id' => $row2['id'],
+                'opiskelijaid' => $row2['opiskelijaid'],
+                'kurssi_id' => $row2['kurssi_id'],
+                'kurssimaksu' => $row2['kurssimaksu'],
             ));
 
             return $ilmoittautumiset;
