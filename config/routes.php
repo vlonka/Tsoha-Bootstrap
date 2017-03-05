@@ -121,3 +121,7 @@ $routes->post('/login', function() {
 $routes->post('/logout', function() {
     Opettajat_Controller::logout();
 });
+
+$routes->post('/kurssit/:id/ilmoittaudu', function($id) {
+    Ilmoittautuminen_Controller::ilmo($id);
+});

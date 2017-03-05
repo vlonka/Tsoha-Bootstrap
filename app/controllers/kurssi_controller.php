@@ -9,7 +9,8 @@ class Kurssi_Controller extends BaseController {
 
     public static function opetus($id) {
         $kurssi = kurssi::find($id);
-        View::make('kurssi.html', array('kurssi' => $kurssi));
+        $ilmoittautumiset = kurssi::findIlmo($id);
+        View::make('kurssi.html', array('kurssi' => $kurssi, 'ilmoittautumiset' => $ilmoittautumiset));
     }
 
     public static function store() {

@@ -32,7 +32,6 @@ class Opettajat_Controller extends BaseController {
     }
 
     public static function edit($id) {
-        self::check_logged_in();
         $opettaja = opettaja::find($id);
         View::make('muokkaaopettaja.html', array('opettaja' => $opettaja));
     }
@@ -56,7 +55,6 @@ class Opettajat_Controller extends BaseController {
     }
 
     public static function destroy($id) {
-        self::check_logged_in();
         $opettaja = new opettaja(array('id' => $id));
         $opettaja->destroy($id);
         Redirect::to('/opettajat', array('message' => 'opettajan tiedot on poistettu onnistuneesti!'));

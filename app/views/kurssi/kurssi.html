@@ -18,7 +18,7 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>Opiskelijan nimi</th>
+            <th>Opiskelijan ID</th>
             <th>kurssimaksu maksettu</th>
         </tr>
     </thead>
@@ -36,6 +36,8 @@
 <form method="post" action="{{base_path}}/kurssit/{{kurssi.id}}/poista" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa kurssin?">
     <button type="submit" class="btn btn-danger">Poista</button></form>
 <a href="{{base_path}}/kurssit/{{kurssi.id}}/muokkaa" class="btn btn-default">Muokkaa</a>
-
+<form method="post" action="{{base_path}}/kurssit/{{kurssi.id}}/ilmoittaudu">
+    <button type="submit" class="btn btn-default">Ilmoittaudu</button></form>
+<a href="{{base_path}}/kurssit/{{kurssi.id}}/ilmoittaudu" class="btn btn-default">ilmo</a>
 
 {% endblock %}

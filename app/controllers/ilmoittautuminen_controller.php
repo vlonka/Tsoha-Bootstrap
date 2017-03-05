@@ -11,23 +11,21 @@ class Imoittautuminen_Controller extends BaseController {
 //        View::make('opettaja.html', array('opettaja' => $opettaja));
 //    }
 
-    public static function store() {
-        $params = $_POST;
-        $ilmoittautuminen = new ilmoittautuminen(array(
-            'opiskelijaid' => $params['opiskelijaid'],
-            'kurssi_id' => $params['kurssi_id'],
-        ));
-
-        $ilmoittautuminen->save();
+    public static function ilmo($id) {
+        opiskelija::check_logged_in();
+        $oppilas = session_id();
+        
+        $query = DB::connection()->prepare('INSERT INTO Ilmoittautuminen (opiskelijaid, kurssi_id) VALUES (:opiskelijaid, :kurssi_id) RETURNING id');
+        $query->execute(array('opiskelijaid' => $oppilas, 'kurssi_id' => $id));
 
         Redirect::to('/kurssit' . $opiskelija->id, array('message' => 'Ilmoittautuminen lisätty'));
     }
 
-    public static function edit($id) {
-        self::check_logged_in();
-        $opettaja = opettaja::find($id);
-        View::make('muokkaaopettaja.html', array('opettaja' => $opettaja));
-    }
+//    public static function edit($id) {
+//        self::check_logged_in();
+//        $opettaja = opettaja::find($id);
+//        View::make('muokkaaopettaja.html', array('opettaja' => $opettaja));
+//    }
 
     public static function update($id) {
         $params = $_POST;
@@ -47,9 +45,8 @@ class Imoittautuminen_Controller extends BaseController {
 
     public static function destroy($id) {
         opiskelija::check_logged_in();
-        $opettaja = new opettaja(array('id' => $id));
-        $opettaja->destroy($id);
-        Redirect::to('/opettajat', array('message' => 'opettajan tiedot on poistettu onnistuneesti!'));
+        $ilmoittautuminen->destroy($id);
+        Redirect::to('/oppilaat/', array('message' => 'Ilmoittautuminen on poistettu onnistuneesti!'));
     }
 
 }

@@ -34,7 +34,25 @@ class kurssi extends BaseModel {
         $query = DB::connection()->prepare('SELECT * FROM kurssi WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
+    
+        if ($row) {
+            $opetus = new kurssi(array(
+                'id' => $row['id'],
+                'opeid' => $row['opeid'],
+                'aihe' => $row['aihe'],
+                'kurssimaksu' => $row['kurssimaksu'],
+                'kuvaus' => $row['kuvaus'],
+                'aloituspvm' => $row['aloituspvm'],
+                'aloitusaika' => $row['aloitusaika']
+            ));
 
+            return $opetus;
+        }
+
+        return null;
+    }
+    
+    public static function findIlmo($id) {
         $query = DB::connection()->prepare('SELECT * FROM ilmoittautuminen WHERE kurssi_id = :id');
         $query->execute(array('id' => $id));
         $rows = $query->fetchAll();
@@ -49,21 +67,7 @@ class kurssi extends BaseModel {
             ));
         }
 
-        if ($row) {
-            $opetus = new kurssi(array(
-                'id' => $row['id'],
-                'opeid' => $row['opeid'],
-                'aihe' => $row['aihe'],
-                'kurssimaksu' => $row['kurssimaksu'],
-                'kuvaus' => $row['kuvaus'],
-                'aloituspvm' => $row['aloituspvm'],
-                'aloitusaika' => $row['aloitusaika']
-            ));
-
-            return $opetus && $ilmoittautumiset;
-        }
-
-        return null;
+        return $ilmoittautumiset;
     }
 
     public function save() {
@@ -74,7 +78,7 @@ class kurssi extends BaseModel {
     }
 
     public static function destroy($id) {
-        $query = DB::connection()->prepare('DELETE * FROM Ilmoittautuminen WHERE kurssi_id = :id');
+        $query = DB::connection()->prepare('DELETE FROM Ilmoittautuminen WHERE kurssi_id = :id');
         $query->execute(array('id' => $id));
         $query = DB::connection()->prepare('DELETE FROM kurssi WHERE id = :id');
         $query->execute(array('id' => $id));

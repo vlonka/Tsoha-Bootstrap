@@ -57,6 +57,9 @@ class opettaja extends BaseModel {
     }
 
     public static function destroy($id) {
+        $query = DB::connection()->prepare('UPDATE Kurssi SET opeid = NULL WHERE opeid = :id');
+        $query->execute(array('id' => $id));
+        
         $query = DB::connection()->prepare('DELETE FROM Opettaja WHERE id = :id');
         $query->execute(array('id' => $id));
     }

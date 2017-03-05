@@ -8,7 +8,7 @@ class Opiskelijat_Controller extends BaseController {
     }
 
     public static function hyypio($id) {
-//        self::check_logged_in();
+        self::check_logged_in();
         $opiskelija = opiskelija::find($id);
         $ilmoittautumiset = opiskelija::findIlmo($id);
         View::make

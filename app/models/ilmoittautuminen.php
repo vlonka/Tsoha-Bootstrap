@@ -63,18 +63,18 @@ class Ilmoittautuminen extends BaseModel {
 //    }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Opiskelija (opiskelijanro, nimi, syntymaaika, salasana) VALUES (:opiskelijanro, :nimi, :syntymaaika, :salasana) RETURNING id');
-        $query->execute(array('opiskelijanro' => $this->opiskelijanro, 'nimi' => $this->nimi, 'syntymaaika' => $this->syntymaaika, 'salasana' => $this->salasana));
+        $query = DB::connection()->prepare('INSERT INTO Ilmoittautuminen (opiskelijaid, kurssi_id) VALUES (:opiskelijaid, :kurssi_id) RETURNING id');
+        $query->execute(array('opiskelijaid' => $this->opiskelijaid, 'kurssi_id' => $this->kurssi_id));
         $row = $query->fetch();
         $this->id = $row['id'];
+        
+        
     }
 
     public static function destroy($id) {
         $query = DB::connection()->prepare('DELETE FROM ilmoittautuminen WHERE opiskelijaid = :id');
         $query->execute(array('id' => $id));
-        
-        $query = DB::connection()->prepare('DELETE FROM opiskelija WHERE id = :id');
-        $query->execute(array('id' => $id));
+   
     }
 
     public function update($id) {
