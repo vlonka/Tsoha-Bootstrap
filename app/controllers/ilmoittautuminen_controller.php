@@ -23,7 +23,7 @@ class Ilmoittautuminen_Controller extends BaseController {
         $nro = $_SESSION['opiskelija'];
         $ilmoittautuminen = new Ilmoittautuminen(array('id' => $id));
         $ilmoittautuminen->destroy($id);
-        Redirect::to('/opiskelijat', array('message' => 'Ilmoittautuminen on poistettu onnistuneesti!'));
+        Redirect::to('/opiskelijat/' . $nro, array('message' => 'Ilmoittautuminen on poistettu onnistuneesti!'));
     }
 
 }

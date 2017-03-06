@@ -29,7 +29,7 @@ $routes->post('/uusioppilas', function() {
 });
 
 $routes->get('/opiskelijat/:id', function($id) {
-    Opiskelijat_Controller::hyypio($id);
+    Opiskelijat_Controller::oppija($id);
 });
 
 $routes->get('/opiskelijat/:id/muokkaa', function($id) {

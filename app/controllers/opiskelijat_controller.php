@@ -7,13 +7,13 @@ class Opiskelijat_Controller extends BaseController {
         View::make('opiskelijat.html', array('opiskelijat' => $opiskelija));
     }
 
-    public static function hyypio($id) {
+    public static function oppija($id) {
         self::check_logged_in();
         $opiskelija = opiskelija::find($id);
         $ilmoittautumiset = opiskelija::findIlmo($id);
         View::make
-                ('opiskelija.html', array('opiskelija' => $opiskelija 
-                ,'ilmoittautumiset' => $ilmoittautumiset));
+                ('opiskelija.html', array('opiskelija' => $opiskelija
+            , 'ilmoittautumiset' => $ilmoittautumiset));
     }
 
     public static function store() {
@@ -25,9 +25,15 @@ class Opiskelijat_Controller extends BaseController {
             'salasana' => $params['salasana']
         ));
 
-        $opiskelija->save();
+        $query1 = DB::connection()->prepare('SELECT * FROM Opiskelija WHERE nimi = :nimi AND salasana = :salasana LIMIT 1');
+        $query1->execute(array('nimi' => $params['nimi'], 'salasana' => $params['salasana']));
+        $haku = $query1->fetch();
 
-        Redirect::to('/opiskelijat' . $opiskelija->id, array('message' => 'Käyttäjä luotu'));
+        if ($haku == NULL) {
+            $opiskelija->save();
+        }
+
+        Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Käyttäjä luotu'));
     }
 
     public static function create() {
@@ -36,8 +42,12 @@ class Opiskelijat_Controller extends BaseController {
 
     public static function edit($id) {
         self::check_logged_in();
-        $opiskelija = opiskelija::find($id);
-        View::make('muokkaaopiskelija.html', array('opiskelija' => $opiskelija));
+        if ($_SESSION['opiskelija'] == $id) {
+            $opiskelija = opiskelija::find($id);
+            View::make('muokkaaopiskelija.html', array('opiskelija' => $opiskelija));
+        } else {
+            View::make('login.html');
+        }
     }
 
     public static function update($id) {
@@ -51,17 +61,27 @@ class Opiskelijat_Controller extends BaseController {
             'salasana' => $params['salasana']
         );
 
-        $opiskelija = new opiskelija($attributes);
-        $opiskelija->update($id);
+        $query1 = DB::connection()->prepare('SELECT * FROM Opiskelija WHERE nimi = :nimi AND salasana = :salasana LIMIT 1');
+        $query1->execute(array('nimi' => $params['nimi'], 'salasana' => $params['salasana']));
+        $haku = $query1->fetch();
+
+        if ($haku == NULL) {
+            $opiskelija = new opiskelija($attributes);
+            $opiskelija->update($id);
+        }
 
         Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
     }
 
     public static function destroy($id) {
         self::check_logged_in();
-        $opiskelija = new opiskelija(array('id' => $id));
-        $opiskelija->destroy($id);
-        Redirect::to('/opiskelijat', array('message' => 'opiskelijan tiedot on poistettu onnistuneesti!'));
+        if ($_SESSION['opiskelija'] == $id) {
+            $opiskelija = new opiskelija(array('id' => $id));
+            $opiskelija->destroy($id);
+            Redirect::to('/opiskelijat', array('message' => 'opiskelijan tiedot on poistettu onnistuneesti!'));
+        } else {
+            View::make('login.html');
+        }
     }
 
     public static function login() {

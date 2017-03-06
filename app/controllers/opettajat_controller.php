@@ -24,7 +24,7 @@ class Opettajat_Controller extends BaseController {
 
         $opettaja->save();
 
-        Redirect::to('/opettajat' . $opettaja->id, array('message' => 'Opettaja lisätty'));
+        Redirect::to('/opettajat/' . $opettaja->id, array('message' => 'Opettaja lisätty'));
     }
 
     public static function create() {

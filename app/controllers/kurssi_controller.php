@@ -26,7 +26,7 @@ class Kurssi_Controller extends BaseController {
 
         $kurssi->save();
 
-        Redirect::to('/kurssit' . $kurssi->id, array('message' => 'Kurssi luotu'));
+        Redirect::to('/kurssit/' . $kurssi->id, array('message' => 'Kurssi luotu'));
     }
 
     public static function create() {
