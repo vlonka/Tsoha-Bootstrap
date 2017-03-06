@@ -7,11 +7,7 @@ Yleisiä linkkejä:
 * [Tietokantayhteystesti](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/tietokantayhteys)
 * [Opiskelijoiden listaussivu.](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
 
-Matti Meikäläinen ja qwerty olisi käyttäjätunnus ja salasana jos login toimisi.
-
-Kurssin luonnissa ja muokkauksessa häiriö, listaus ja poisto toimii. Saattaa olla samanlainen ongelma kuin aiemmin...
-
-Validointi hakusessa, ei toteutusta tällä hetkellä.
+'Matti Meikäläinen' ja 'qwerty' toimivat tunnuksina.
 
 ## Työn aihe
 
