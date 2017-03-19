@@ -34,7 +34,7 @@ class Opiskelijat_Controller extends BaseController {
             $_SESSION['opiskelija'] = $opiskelija->id;
             Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Käyttäjä luotu'));
         } else {
-            Redirect::to('/uusioppilas', array('message' => '$validointi'));
+            Redirect::to('/uusioppilas', array('message' => $validointi));
         }
     }
 
@@ -56,6 +56,7 @@ class Opiskelijat_Controller extends BaseController {
         $params = $_POST;
 
         $validointi = self::validate($params);
+
 
         if ($validointi == '') {
 
@@ -115,29 +116,38 @@ class Opiskelijat_Controller extends BaseController {
     }
 
     public static function validate($params) {
-        $errors = '';
+        $errors = "";
 
-        if ($params['nimi'] == '' || $params['nimi'] == NULL) {
+        if ($params['nimi'] == '' || $params['nimi'] == null) {
+
             $errors .= 'Nimi oltava. ';
         }
 
-        if ($params['opiskelijanro'] == '' || $params['opiskelijanro'] == NULL) {
+        if ($params['opiskelijanro'] == '' || $params['opiskelijanro'] == null) {
+
             $errors .= 'Opiskelijanumero oltava. ';
         }
 
-        if (!is_int($params['opiskelijanro'])) {
+        if (!ctype_digit($params['opiskelijanro'])) {
+
             $errors .= 'Opiskelijanumeron oltava numero. ';
         }
 
-//        $query = DB::connection()->prepare('ISDATE(\':syntymaaika\')');
-//        $query->execute(array('syntymaaika' => $params['syntymaaika']));
-//        $row = $query->fetch();
-//
-//        if ($row != 1) {
-//            $errors[] = 'Syntymäajassa häikkää.';
-//        }
+        if (!ctype_digit(substr($params['syntymaaika'], 0, 4)) ||
+                !ctype_digit(substr($params['syntymaaika'], 5, 2)) ||
+                !ctype_digit(substr($params['syntymaaika'], 8, 2)) ||
+                strlen($params['syntymaaika']) != 10 ||
+                $params['syntymaaika']{4} != '-' ||
+                $params['syntymaaika']{7} != '-' || 
+                !checkdate(substr($params['syntymaaika'], 5, 2), substr($params['syntymaaika'], 8, 2), substr($params['syntymaaika'], 0, 4))) {
 
-        if (strlen($params['salasana']) < 4 || $params['salasana'] == NULL) {
+            $errors .= 'Syntymäajassa häikkää. ';
+        }
+
+        // yyyy-mm-dd
+
+        if (strlen($params['salasana']) < 4 || $params['salasana'] == null) {
+
             $errors .= 'Salasanan pituuden oltava vähintään 4. ';
         }
 

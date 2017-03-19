@@ -53,7 +53,7 @@ class Kurssi_Controller extends BaseController {
         $kurssi = new kurssi($attributes);
         $kurssi->update($id);
 
-        Redirect::to('/kurssit/' . $kurssi->id, array('message' => 'Kurssin tietoja on muokattu onnistuneesti!'));
+        Redirect::to('/kurssit/' . $id, array('message' => 'Kurssin tietoja on muokattu onnistuneesti!'));
     }
 
     public static function destroy($id) {

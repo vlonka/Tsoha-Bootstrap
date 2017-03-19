@@ -15,7 +15,7 @@ class Ilmoittautuminen_Controller extends BaseController {
             $query->execute(array('opiskelijaid' => $oppilas, 'kurssi_id' => $id));
         }
         
-        Redirect::to('/kurssit');
+        Redirect::to('/kurssit/' . $id, array('message'=> 'Olet ilmoittautunut kurssille.'));
     }
 
     public static function destroy($id) {
