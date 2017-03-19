@@ -7,7 +7,7 @@ Yleisiä linkkejä:
 * [Tietokantayhteystesti](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/tietokantayhteys)
 * [Opiskelijoiden listaussivu.](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
 
-'Matti Meikäläinen' ja 'qwerty' toimivat tunnuksina.
+'1' ja 'qwerty' toimivat tunnuksina.
 
 ## Työn aihe
 
