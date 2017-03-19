@@ -1,30 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Käyttäjätunnuksen luonti</h1>
+<h1>Käyttäjätunnuksen luonti</h1>
 
-  <form method="post" action="{{base_path}}/uusioppilas">
+<form method="post" action="{{base_path}}/uusioppilas">
     <div class="form-group">
-      <label>Nimi</label>
-      <input class="form-control" name="nimi" type="text">
+        <label>Nimi</label>
+        <input class="form-control" name="nimi" type="text">
     </div>
 
     <div class="form-group">
-      <label>Oppilasnumero</label>
-      <input name="opiskelijanro" class="form-control" type="text">
+        <label>Oppilasnumero</label>
+        <input name="opiskelijanro" class="form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>Syntymäaika</label>
-      <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" type="text">
+        <label>Syntymäaika</label>
+        <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>Salasana</label>
-      <input name='salasana' class="form-control" type="text">
+        <label>Salasana</label>
+        <input name='salasana' class="form-control" type="text">
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Luo käyttäjä</button>
+        <button type="submit" class="btn btn-primary">Luo käyttäjä</button>
     </div>
-  </form>
+</form>
+
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}

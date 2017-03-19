@@ -18,22 +18,24 @@ class Opiskelijat_Controller extends BaseController {
 
     public static function store() {
         $params = $_POST;
-        $opiskelija = new opiskelija(array(
-            'opiskelijanro' => $params['opiskelijanro'],
-            'nimi' => $params['nimi'],
-            'syntymaaika' => $params['syntymaaika'],
-            'salasana' => $params['salasana']
-        ));
 
-        $query1 = DB::connection()->prepare('SELECT * FROM Opiskelija WHERE nimi = :nimi AND salasana = :salasana LIMIT 1');
-        $query1->execute(array('nimi' => $params['nimi'], 'salasana' => $params['salasana']));
-        $haku = $query1->fetch();
+        $validointi = self::validate($params);
 
-        if ($haku == NULL) {
+        if ($validointi == '') {
+
+            $opiskelija = new opiskelija(array(
+                'opiskelijanro' => $params['opiskelijanro'],
+                'nimi' => $params['nimi'],
+                'syntymaaika' => $params['syntymaaika'],
+                'salasana' => $params['salasana']
+            ));
+
             $opiskelija->save();
+            $_SESSION['opiskelija'] = $opiskelija->id;
+            Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Käyttäjä luotu'));
+        } else {
+            Redirect::to('/uusioppilas', array('message' => '$validointi'));
         }
-
-        Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Käyttäjä luotu'));
     }
 
     public static function create() {
@@ -53,24 +55,25 @@ class Opiskelijat_Controller extends BaseController {
     public static function update($id) {
         $params = $_POST;
 
-        $attributes = array(
-            'id' => $id,
-            'nimi' => $params['nimi'],
-            'opiskelijanro' => $params['opiskelijanro'],
-            'syntymaaika' => $params['syntymaaika'],
-            'salasana' => $params['salasana']
-        );
+        $validointi = self::validate($params);
 
-        $query1 = DB::connection()->prepare('SELECT * FROM Opiskelija WHERE nimi = :nimi AND salasana = :salasana LIMIT 1');
-        $query1->execute(array('nimi' => $params['nimi'], 'salasana' => $params['salasana']));
-        $haku = $query1->fetch();
+        if ($validointi == '') {
 
-        if ($haku == NULL) {
+            $attributes = array(
+                'id' => $id,
+                'nimi' => $params['nimi'],
+                'opiskelijanro' => $params['opiskelijanro'],
+                'syntymaaika' => $params['syntymaaika'],
+                'salasana' => $params['salasana']
+            );
+
             $opiskelija = new opiskelija($attributes);
             $opiskelija->update($id);
-        }
 
-        Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
+            Redirect::to('/opiskelijat/' . $opiskelija->id, array('message' => 'Opiskelijan tietoja on muokattu onnistuneesti!'));
+        } else {
+            Redirect::to('/opiskelijat/' . $_SESSION['opiskelija'] . '/muokkaa', array('message' => $validointi));
+        }
     }
 
     public static function destroy($id) {
@@ -91,10 +94,14 @@ class Opiskelijat_Controller extends BaseController {
     public static function handle_login() {
         $params = $_POST;
 
-        $opiskelija = opiskelija::authenticate($params['nimi'], $params['salasana']);
+        if (!ctype_digit($params['id'])) {
+            View::make('/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'id' => $params['id']));
+        }
+
+        $opiskelija = opiskelija::authenticate($params['id'], $params['salasana']);
 
         if (!$opiskelija) {
-            View::make('/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'nimi' => $params['nimi']));
+            View::make('/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'id' => $params['id']));
         } else {
             $_SESSION['opiskelija'] = $opiskelija->id;
 
@@ -104,7 +111,37 @@ class Opiskelijat_Controller extends BaseController {
 
     public static function logout() {
         $_SESSION['opiskelija'] = null;
-        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+        Redirect::to('/', array('message' => 'Olet kirjautunut ulos!'));
+    }
+
+    public static function validate($params) {
+        $errors = '';
+
+        if ($params['nimi'] == '' || $params['nimi'] == NULL) {
+            $errors .= 'Nimi oltava. ';
+        }
+
+        if ($params['opiskelijanro'] == '' || $params['opiskelijanro'] == NULL) {
+            $errors .= 'Opiskelijanumero oltava. ';
+        }
+
+        if (!is_int($params['opiskelijanro'])) {
+            $errors .= 'Opiskelijanumeron oltava numero. ';
+        }
+
+//        $query = DB::connection()->prepare('ISDATE(\':syntymaaika\')');
+//        $query->execute(array('syntymaaika' => $params['syntymaaika']));
+//        $row = $query->fetch();
+//
+//        if ($row != 1) {
+//            $errors[] = 'Syntymäajassa häikkää.';
+//        }
+
+        if (strlen($params['salasana']) < 4 || $params['salasana'] == NULL) {
+            $errors .= 'Salasanan pituuden oltava vähintään 4. ';
+        }
+
+        return $errors;
     }
 
 }

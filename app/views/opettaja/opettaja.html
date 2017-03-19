@@ -16,5 +16,15 @@
     <button type="submit" class="btn btn-danger">Poista</button></form>
 <a href="{{base_path}}/opettajat/{{opettaja.id}}/muokkaa" class="btn btn-default">Muokkaa</a>
 
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
 
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}

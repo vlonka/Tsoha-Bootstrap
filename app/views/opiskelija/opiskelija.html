@@ -4,6 +4,7 @@
 
 <ul>
 
+    <li><strong>Käyttäjätunnus/sivu-ID:</strong> {{opiskelija.id}}</li>
     <li><strong>Nimi:</strong> {{opiskelija.nimi}}</li>
     <li><strong>Opiskelijanumero:</strong> {{opiskelija.opiskelijanro}}</li>
     <li><strong>Syntymäaika:</strong> {{opiskelija.syntymaaika}}</li>
@@ -36,5 +37,15 @@
     <button type="submit" class="btn btn-danger">Poista</button></form>
 <a href="{{base_path}}/opiskelijat/{{opiskelija.id}}/muokkaa" class="btn btn-default">Muokkaa</a>
 
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
 
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}

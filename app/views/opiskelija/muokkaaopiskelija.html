@@ -1,30 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Opiskelijan tietojen muokkaus</h1>
+<h1>Opiskelijan tietojen muokkaus</h1>
 
-  <form method="post" action="{{base_path}}/opiskelijat/{{opiskelija.id}}">
+<form method="post" action="{{base_path}}/opiskelijat/{{opiskelija.id}}">
     <div class="form-group">
-      <label>Nimi</label>
-      <input class="form-control" name="nimi" value="{{opiskelija.nimi}}" type="text">
+        <label>Nimi</label>
+        <input class="form-control" name="nimi" value="{{opiskelija.nimi}}" type="text">
     </div>
 
     <div class="form-group">
-      <label>Oppilasnumero</label>
-      <input name="opiskelijanro" class="form-control" value="{{opiskelija.opiskelijanro}}" type="text">
+        <label>Oppilasnumero</label>
+        <input name="opiskelijanro" class="form-control" value="{{opiskelija.opiskelijanro}}" type="text">
     </div>
 
     <div class="form-group">
-      <label>Syntymäaika</label>
-      <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" value="{{opiskelija.syntymaaika}}" type="text">
+        <label>Syntymäaika</label>
+        <input placeholder="YYYY-MM-DD" name="syntymaaika" class="form-control" value="{{opiskelija.syntymaaika}}" type="text">
     </div>
 
     <div class="form-group">
-      <label>Salasana</label>
-      <input name='salasana' class="form-control" value="{{opiskelija.salasana}}" type="text">
+        <label>Salasana</label>
+        <input name='salasana' class="form-control" value="{{opiskelija.salasana}}" type="text">
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+        <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
     </div>
-  </form>
+</form>
+
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}

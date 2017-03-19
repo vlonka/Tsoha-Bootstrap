@@ -10,7 +10,7 @@ CREATE TABLE Opettaja(
   id SERIAL PRIMARY KEY,
   openro integer NOT NULL, 
   nimi varchar(50) NOT NULL,
-  syntymaaika DATE,
+  syntymaaika DATE NOT NULL,
   kuvaus varchar(10000),
   salasana varchar(50) NOT NULL
 );

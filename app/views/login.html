@@ -5,7 +5,7 @@
 <form method="post" action="{{base_path}}/login">
     <div class="form-group">
         <label>Käyttäjätunnus</label>
-        <input class="form-control" name="nimi" value="{{params.nimi}}" type="text">
+        <input class="form-control" name="id" value="{{params.id}}" type="text">
     </div>
 
     <div class="form-group">
@@ -15,4 +15,16 @@
 
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
 </form>
+
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}

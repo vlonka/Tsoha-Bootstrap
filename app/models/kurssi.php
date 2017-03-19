@@ -86,7 +86,7 @@ class kurssi extends BaseModel {
 
     public function update($id) {
         $query = DB::connection()->prepare('UPDATE Kurssi SET (opeid, aihe, kurssimaksu, kuvaus, aloituspvm, aloitusaika) = (:opeid, :aihe, :kurssimaksu, :kuvaus, :aloituspvm, :aloitusaika) WHERE id = :id');
-        $query->execute(array('id' => $this->id, 'opeid' => $this->opeid, 'aihe' => $this->aihe, 'kurssimaksu' => $this->kurssimaksu, 'kuvaus' => $this->kuvaus, 'aloituspvm' => $this->aloituspvm, 'aloitusaika' => $this->aloitusaika));
+        $query->execute(array('id' => $id, 'opeid' => $this->opeid, 'aihe' => $this->aihe, 'kurssimaksu' => $this->kurssimaksu, 'kuvaus' => $this->kuvaus, 'aloituspvm' => $this->aloituspvm, 'aloitusaika' => $this->aloitusaika));
     }
 
 }

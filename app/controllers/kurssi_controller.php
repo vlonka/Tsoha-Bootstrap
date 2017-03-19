@@ -42,7 +42,6 @@ class Kurssi_Controller extends BaseController {
         $params = $_POST;
 
         $attributes = array(
-            'id' => $params['id'],
             'opeid' => $params['opeid'],
             'aihe' => $params['aihe'],
             'kurssimaksu' => $params['kurssimaksu'],

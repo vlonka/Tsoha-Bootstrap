@@ -24,4 +24,15 @@
 
 <a href="{{base_path}}/uusioppilas" class="btn btn-default">Luo käyttäjä</a>
 
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}

@@ -9,7 +9,7 @@
 <form method="post" action="{{base_path}}/login">
     <div class="form-group">
         <label>Käyttäjätunnus</label>
-        <input class="form-control" name="nimi" value="{{nimi}}" type="text">
+        <input class="form-control" name="id" value="{{id}}" type="text">
     </div>
 
     <div class="form-group">
@@ -20,4 +20,17 @@
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
 </form>
 
+<a href="{{base_path}}/uusioppilas" class="btn btn-primary">Luo käyttäjä</a>
+
+{%if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{%if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 {% endblock %}
