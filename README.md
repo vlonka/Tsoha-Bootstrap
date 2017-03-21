@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://vlonka.users.cs.helsinki.fi/kurssitarjonta)
-* [Linkki dokumentaatiooni](https://github.com/vlonka/Tsoha-Bootstrap/blob/master/doc/Dokumantaatio.pdf)
+* [Linkki dokumentaatiooni](https://github.com/vlonka/Tsoha-Bootstrap/blob/master/doc/Dokumentaatio.pdf)
 * [Tietokantayhteystesti](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/tietokantayhteys)
 * [Opiskelijoiden listaussivu.](http://vlonka.users.cs.helsinki.fi/kurssitarjonta/opiskelijat)
 
